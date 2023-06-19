@@ -1,7 +1,7 @@
 package database
 
 type Gorm struct {
-	Users []*User
+	Users []User
 }
 
 type User struct {
@@ -10,8 +10,8 @@ type User struct {
 }
 
 func (g *Gorm) InitDb() {
-	tiago := &User{Name: "Tiago", Age: 15}
-	cintia := &User{Name: "Cintia", Age: 20}
+	tiago := User{Name: "Tiago", Age: 15}
+	cintia := User{Name: "Cintia", Age: 20}
 
 	g.Users = append(g.Users, tiago, cintia)
 }
@@ -20,7 +20,7 @@ func (g *Gorm) AddUser(data []interface{}) error {
 	name := data[0]
 	age := data[1]
 
-	user := &User{Name: name.(string), Age: age.(uint8)}
+	user := User{Name: name.(string), Age: age.(uint8)}
 
 	g.Users = append(g.Users, user)
 

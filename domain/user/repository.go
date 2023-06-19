@@ -6,7 +6,7 @@ import (
 
 type Repository interface {
 	Create(user *User) error
-	List() []*User
+	List() []User
 }
 
 type RepositoryImpl struct {
@@ -21,16 +21,16 @@ func (r *RepositoryImpl) Create(user *User) error {
 	return nil
 }
 
-func (r *RepositoryImpl) List() []*User {
+func (r *RepositoryImpl) List() []User {
 	result := r.Db.ListUsers()
 
-	var users []*User
+	var users []User
 
 	for _, user := range result {
 		name := user.([]interface{})[0].(string)
 		age := user.([]interface{})[1].(uint8)
 
-		users = append(users, &User{name, age})
+		users = append(users, User{name, age})
 	}
 
 	return users

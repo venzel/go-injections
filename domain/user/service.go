@@ -2,7 +2,7 @@ package user
 
 type Service interface {
 	Create(name string, age uint8) (*User, error)
-	List() []*User
+	List() []User
 }
 
 type ServiceImpl struct {
@@ -27,6 +27,6 @@ func (s *ServiceImpl) Create(name string, age uint8) (*User, error) {
 	return user, nil
 }
 
-func (s *ServiceImpl) List() []*User {
+func (s *ServiceImpl) List() []User {
 	return s.Repository.List()
 }
